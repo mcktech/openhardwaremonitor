@@ -5,34 +5,34 @@
   file, You can obtain one at http://mozilla.org/MPL/2.0/.
  
   Copyright (C) 2009-2010 Michael Möller <mmoeller@openhardwaremonitor.org>
-	
+    
 */
 
 namespace OpenHardwareMonitor.Hardware.Mainboard {
 
-  internal enum Manufacturer {
-    Alienware,
-    Apple,
-    ASRock,
-    ASUS,
-    Dell,
-    DFI,
-    ECS,
-    EPoX,
-    EVGA,
-    FIC,
-    Fujitsu,
-    Gigabyte,
-    HP,
-    IBM,
-    Intel,
-    Lenovo,
-    MSI,
-    Shuttle,
-    Supermicro,
-    Toshiba,
-    XFX,
-    Unknown    
-  }
+    internal enum Manufacturer {
+        Alienware,
+        Apple,
+        ASRock,
+        ASUS,
+        Dell,
+        DFI,
+        ECS,
+        EPoX,
+        EVGA,
+        FIC,
+        Fujitsu,
+        Gigabyte,
+        HP,
+        IBM,
+        Intel,
+        Lenovo,
+        MSI,
+        Shuttle,
+        Supermicro,
+        Toshiba,
+        XFX,
+        Unknown
+    }
 
 }

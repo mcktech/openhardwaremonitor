@@ -5,7 +5,7 @@
   file, You can obtain one at http://mozilla.org/MPL/2.0/.
  
   Copyright (C) 2009-2011 Michael Möller <mmoeller@openhardwaremonitor.org>
-	
+    
 */
 
 using System;
