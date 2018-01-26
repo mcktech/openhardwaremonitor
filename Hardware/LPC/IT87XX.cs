@@ -7,6 +7,7 @@
   Copyright (C) 2009-2015 Michael Möller <mmoeller@openhardwaremonitor.org>
 	
 */
+using System.Diagnostics;
 
 using System.Globalization;
 using System.Text;
@@ -118,6 +119,7 @@ namespace OpenHardwareMonitor.Hardware.LPC {
 	} 
 
 	public IT87XX(Chip chip, ushort address, ushort gpioAddress, byte version) {
+	  Debug.WriteLine ("Usando IT87XX...");
 
 	  this.address = address;
 	  this.chip = chip;
@@ -125,7 +127,7 @@ namespace OpenHardwareMonitor.Hardware.LPC {
 	  this.addressReg = (ushort)(address + ADDRESS_REGISTER_OFFSET);
 	  this.dataReg = (ushort)(address + DATA_REGISTER_OFFSET);
 	  this.gpioAddress = gpioAddress;
-
+	  Debug.WriteLine(this.chip.ToString());
 	  // Check vendor id
 	  bool valid;
 	  byte vendorId = ReadByte(VENDOR_ID_REGISTER, out valid);       
@@ -137,7 +139,7 @@ namespace OpenHardwareMonitor.Hardware.LPC {
 		return;
 	  if (!valid)
 		return;
-
+		
 		// IT8686E has more sensors
 	   if(chip == Chip.IT8686E)
 	   {
@@ -164,7 +166,7 @@ namespace OpenHardwareMonitor.Hardware.LPC {
 		voltageGain = 0.016f;        
 	  }
 	  if (chip == Chip.IT8792E) {
-		  voltageGain = 0.0109f;
+		  voltageGain = 0.0109f;  // looks like uses 10.9mv
 	  }
 
 	  // older IT8705F and IT8721F revisions do not have 16-bit fan counters
@@ -194,7 +196,7 @@ namespace OpenHardwareMonitor.Hardware.LPC {
 		case Chip.IT8728F:
 		case Chip.IT8771E:
 		case Chip.IT8772E:
-		case Chip.IT8792E:
+		case Chip.IT8792E: // dont know gpioCount for this chip
 		  gpioCount = 0;
 		  break;
 	  }

@@ -9,6 +9,7 @@
 */
 
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -321,15 +322,19 @@ namespace OpenHardwareMonitor.Hardware.LPC {
 	private const byte IT87_CHIP_VERSION_REGISTER = 0x22;
 
 	private bool DetectIT87(LPCPort port) {
-
+		Debug.WriteLine("Detecting IT87XX...port:" + port.RegisterPort.ToString());
 	  // IT87XX can enter only on port 0x2E
-	  if (port.RegisterPort != 0x2E)
+
+        // here, 0x8733 inform 0x4E, so this must be allowed here to add the IT8792, but it's not ready.
+		if (port.RegisterPort != 0x2E) 
 		return false;
 
 	  port.IT87Enter();
 
 	  ushort chipID = port.ReadWord(CHIP_ID_REGISTER);
 	  Chip chip;
+
+	  Debug.WriteLine("CHIPID: " + chipID);
 	  switch (chipID) {
 		case 0x8620: chip = Chip.IT8620E; break;
 		case 0x8628: chip = Chip.IT8628E; break;
@@ -347,6 +352,8 @@ namespace OpenHardwareMonitor.Hardware.LPC {
 		case 0x8733: chip = Chip.IT8792E; break;
 		default: chip = Chip.Unknown; break;
 	  }
+	  Debug.WriteLine(chip.ToString());
+
 	  if (chip == Chip.Unknown) {
 		if (chipID != 0 && chipID != 0xffff) {
 		  port.IT87Exit();
@@ -399,9 +406,10 @@ namespace OpenHardwareMonitor.Hardware.LPC {
 		}
 
 		superIOs.Add(new IT87XX(chip, address, gpioAddress, version));
+		Debug.WriteLine("IT87XX...TRUE");
 		return true;
 	  }
-
+	  Debug.WriteLine("IT87XX...FALSE");
 	  return false;
 	}
 

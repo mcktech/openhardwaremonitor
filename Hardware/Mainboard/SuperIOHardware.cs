@@ -874,7 +874,7 @@ namespace OpenHardwareMonitor.Hardware.Mainboard {
 			  f.Add(new Fan("System Fan #2", 3));
 			  f.Add(new Fan("System Fan #3", 4));
 			  break;
-			case Model.Z370_G5: // IT8686E
+			case Model.Z370_G5: // IT8686E IT8792E (missing info)
 			  // Note: v3.3, v12, v5, and AVCC3 might be slightly off.
 			  v.Add(new Voltage("CPU VCore", 0));
 			  v.Add(new Voltage("+3.3V", 1, 0.65f, 1));
